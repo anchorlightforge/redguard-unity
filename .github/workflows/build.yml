@@ -58,7 +58,7 @@ jobs:
             build-on: macos-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        #uses: actions/checkout@v3
         #todo: This should go to the RGU Launcher repo, not RGUnity-master
         with:
           lfs: true
