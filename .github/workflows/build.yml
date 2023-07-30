@@ -80,6 +80,7 @@ jobs:
           name: Client - ${{ matrix.target-platform }}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
   upload-release:
+    needs: [ build-launcher, build-game ]
     strategy:
       matrix:
         include:
@@ -104,15 +105,9 @@ jobs:
             echo "Compile Mac OSX launcher + game"
             echo "Compile Linux launcher + game"
       
-    - name: Publishing Release
+    - name: Upload application snapshot
       uses: softprops/action-gh-release@v1
       with:  
-        tag_name: ${{ steps.version.outputs.builddate }}
-        name: 
-        body: "your date"
-    - name: Upload application snapshot
-      uses: "softprops/action-gh-release@v1"
-      with:
         token: "${{ secrets.GITHUB_TOKEN }}"
         name: RGUnity Snapshot ${{ steps.version.outputs.builddate }}
         tag_name: "snapshot"
