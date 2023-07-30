@@ -56,12 +56,13 @@ jobs:
             preset-platform: mac
             display-name: MacOSX 64-bit
             build-on: macos-latest
+    runs-on: ${{matrix.build-on}}
     steps:
       - name: Checkout code
         #uses: actions/checkout@v3
         #todo: This should go to the RGU Launcher repo, not RGUnity-master
-        with:
-          lfs: true
+        #with:
+        #  lfs: true
         run: |
           git config --global url.https://github.com/RGUnity/rgu-launcher
           git clone https://github.com/RGUnity/rgu-launcher.git
