@@ -64,7 +64,6 @@ jobs:
         #with:
         #  lfs: true
         run: |
-          git config --global url.https://github.com/RGUnity/rgu-launcher
           git clone https://github.com/RGUnity/rgu-launcher.git
 
       - name: Build GODOT application
