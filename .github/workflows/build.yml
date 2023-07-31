@@ -68,15 +68,16 @@ jobs:
 
       - name: Build GODOT application
         id: build
-        uses: manleydev/build-godot-action@v1.4.1
+        uses: paulloz/godot-action@v1.2.2
         with:
-          name: rgu-launcher
-          preset: ${{ matrix.preset-platform }}
-          projectDir: "" # The project in the `` directory will be built
+          version: 4.0.3
+      - run: |
+          godot --version
+          godot --export ${{ matrix.preset-platform }} ./build
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with: 
-          name: Client - ${{ matrix.target-platform }}
+          name: Launcher-${{ matrix.target-platform }}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
   upload-release:
     needs: [ build-launcher, build-game ]
